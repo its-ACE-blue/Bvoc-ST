@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Timetable - FY Bvoc(ST)</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #121212; color: #e0e0e0; margin: 0; padding: 20px; text-align: center; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        h1 { color: #64ffda; margin-bottom: 20px; }
+        .timetable-container { 
+            background: rgba(255, 255, 255, 0.05); 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            border-radius: 15px; 
+            padding: 20px; 
+            max-width: 95%; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .timetable-container img { 
+            width: 100%; 
+            border-radius: 8px; 
+            filter: brightness(0.9);
+        }
+        .back-btn { display: inline-block; margin-bottom: 20px; color: #48cae4; text-decoration: none; transition: 0.3s; }
+        .back-btn:hover { color: #64ffda; }
+        .btn-download {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #64ffda;
+            color: #121212;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-btn">← Back to Dashboard</a>
+    <h1>Current Daily Timetable</h1>
+    
+    <div class="timetable-container">
+        <img src="timetable.jpg" alt="FY Bvoc(ST) Timetable">
+    </div>
+
+    <a href="timetable.jpg" download class="btn-download">Download Image</a>
+</body>
+
+</html>
+
+

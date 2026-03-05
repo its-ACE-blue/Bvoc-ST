@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignments - FY Bvoc(ST)</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #121212; color: #e0e0e0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; margin: 0; padding: 20px; }
+        h1 { color: #64ffda; margin-bottom: 40px; }
+        .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; width: 100%; }
+        .subject-card { 
+            background: rgba(255, 255, 255, 0.05); 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            border-radius: 15px; 
+            padding: 25px; 
+            text-decoration: none; 
+            color: inherit; 
+            transition: 0.3s; 
+            text-align: left;
+        }
+        .subject-card:hover { border-color: #48cae4; background: rgba(255, 255, 255, 0.08); transform: translateY(-5px); }
+        .subject-card h2 { margin: 0; color: #48cae4; font-size: 1.2rem; }
+        .subject-card p { font-size: 0.85rem; opacity: 0.6; margin: 10px 0 0 0; }
+        .back-btn { align-self: flex-start; color: #48cae4; text-decoration: none; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-btn">← Back to Dashboard</a>
+    <h1>Current Semester Assignments</h1>
+    
+    <div class="container">
+        <a href="sub1.html" class="subject-card">
+            <h2>Subject 1: Web Technologies</h2>
+            <p>View HTML, CSS, and JS assignments.</p>
+        </a>
+        <a href="sub2.html" class="subject-card">
+            <h2>Subject 2: Programming in C</h2>
+            <p>Logic building and algorithm tasks.</p>
+        </a>
+        <a href="sub3.html" class="subject-card">
+            <h2>Subject 3: Mathematics</h2>
+            <p>Calculus and Discrete structures.</p>
+        </a>
+        <a href="sub4.html" class="subject-card">
+            <h2>Subject 4: Communication Skills</h2>
+            <p>Presentation and report writing tasks.</p>
+        </a>
+    </div>
+</body>
+
+</html>
+
+
+
