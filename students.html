@@ -4,11 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Directory - FY Bvoc(ST)</title>
+    <script>
+        if (sessionStorage.getItem("access_granted") !== "true") {
+            window.location.href = "index.html";
+        }
+    </script>
     <style>
         body { font-family: 'Segoe UI', sans-serif; background: #121212; color: #e0e0e0; margin: 0; padding: 20px; text-align: center; }
         h1 { color: #64ffda; margin-bottom: 10px; }
         
-        /* Search Bar Styling */
         .search-container {
             margin: 20px auto 40px auto;
             max-width: 400px;
@@ -24,44 +28,55 @@
             outline: none;
             transition: 0.3s;
         }
-        #studentSearch:focus {
-            border-color: #64ffda;
-            box-shadow: 0 0 10px rgba(100, 255, 218, 0.2);
-        }
+        #studentSearch:focus { border-color: #64ffda; box-shadow: 0 0 10px rgba(100, 255, 218, 0.2); }
 
         .grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
-            gap: 25px; 
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+            gap: 20px; 
             max-width: 1200px; 
             margin: 0 auto; 
         }
+        
         .student-card { 
             background: rgba(255, 255, 255, 0.05); 
             border: 1px solid #333; 
-            border-radius: 12px; 
-            overflow: hidden; 
+            border-radius: 15px; 
+            padding: 20px;
             transition: 0.3s; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        /* This class is used to hide cards that don't match the search */
+        .student-card:hover { border-color: #48cae4; background: rgba(255, 255, 255, 0.08); transform: translateY(-5px); }
         .hidden { display: none; }
 
-        .student-card:hover { border-color: #48cae4; transform: scale(1.03); }
-        .student-card img { 
-            width: 100%; 
-            height: 250px; 
-            object-fit: cover; 
-            background: #222;
+        /* Privacy-friendly Profile Icon */
+        .profile-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #64ffda, #48cae4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #121212;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
-        .info { padding: 15px; }
+
         .info h3 { margin: 5px 0; font-size: 1.1rem; color: #fff; }
-        .info p { margin: 0; color: #64ffda; font-weight: bold; font-size: 0.9rem; }
-        .back-btn { display: inline-block; margin-bottom: 20px; color: #48cae4; text-decoration: none; }
+        .info p { margin: 0; color: #64ffda; font-weight: bold; font-size: 0.85rem; opacity: 0.8; }
+        
+        .back-btn { display: inline-block; margin-bottom: 20px; color: #48cae4; text-decoration: none; transition: 0.3s; }
+        .back-btn:hover { color: #64ffda; }
     </style>
 </head>
 <body>
 
-    <a href="index.html" class="back-btn">← Back to Dashboard</a>
+    <a href="dashboard.html" class="back-btn">← Back to Dashboard</a>
     <h1>Class of 2026</h1>
 
     <div class="search-container">
@@ -70,8 +85,7 @@
 
     <div class="grid" id="studentGrid"></div>
 
-   <script>
-        // 1. THE STUDENT DATABASE (Extracted from your image)
+    <script>
         const students = [
             { roll: "2511002", name: "Albin Antony" },
             { roll: "2511003", name: "Alyona Mary Francis Monteiro" },
@@ -107,44 +121,40 @@
 
         const grid = document.getElementById('studentGrid');
         const searchInput = document.getElementById('studentSearch');
-        
-        // 2. BUILD THE CARDS
+
+        // Helper function to get Initials (e.g., Albin Antony -> AA)
+        function getInitials(name) {
+            return name.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2);
+        }
+
         function displayStudents() {
-            grid.innerHTML = ""; // Clear grid before building
+            grid.innerHTML = "";
             students.forEach((student) => {
+                const initials = getInitials(student.name);
                 const card = document.createElement('div');
                 card.className = 'student-card';
                 card.setAttribute('data-name', student.name.toLowerCase());
                 
                 card.innerHTML = `
-                    <img src="${student.roll}.jpg" alt="${student.name}" onerror="this.src='placeholder.jpg';">
+                    <div class="profile-icon">${initials}</div>
                     <div class="info">
                         <h3>${student.name}</h3>
-                        <p>Roll No: ${student.roll}</p>
+                        <p>ID: ${student.roll}</p>
                     </div>
                 `;
                 grid.appendChild(card);
             });
         }
 
-        // 3. SEARCH LOGIC
         searchInput.addEventListener('input', (e) => {
             const term = e.target.value.toLowerCase();
-            const cards = document.querySelectorAll('.student-card');
-
-            cards.forEach(card => {
+            document.querySelectorAll('.student-card').forEach(card => {
                 const name = card.getAttribute('data-name');
-                if (name.includes(term)) {
-                    card.classList.remove('hidden');
-                } else {
-                    card.classList.add('hidden');
-                }
+                card.classList.toggle('hidden', !name.includes(term));
             });
         });
 
-        // Initialize the page
         displayStudents();
     </script>
 </body>
-
 </html>
