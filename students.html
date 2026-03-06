@@ -1,4 +1,76 @@
-    <script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Directory - FY Bvoc(ST)</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #121212; color: #e0e0e0; margin: 0; padding: 20px; text-align: center; }
+        h1 { color: #64ffda; margin-bottom: 10px; }
+        
+        /* Search Bar Styling */
+        .search-container {
+            margin: 20px auto 40px auto;
+            max-width: 400px;
+        }
+        #studentSearch {
+            width: 100%;
+            padding: 12px 20px;
+            border-radius: 25px;
+            border: 1px solid #333;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            transition: 0.3s;
+        }
+        #studentSearch:focus {
+            border-color: #64ffda;
+            box-shadow: 0 0 10px rgba(100, 255, 218, 0.2);
+        }
+
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
+            gap: 25px; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+        }
+        .student-card { 
+            background: rgba(255, 255, 255, 0.05); 
+            border: 1px solid #333; 
+            border-radius: 12px; 
+            overflow: hidden; 
+            transition: 0.3s; 
+        }
+        /* This class is used to hide cards that don't match the search */
+        .hidden { display: none; }
+
+        .student-card:hover { border-color: #48cae4; transform: scale(1.03); }
+        .student-card img { 
+            width: 100%; 
+            height: 250px; 
+            object-fit: cover; 
+            background: #222;
+        }
+        .info { padding: 15px; }
+        .info h3 { margin: 5px 0; font-size: 1.1rem; color: #fff; }
+        .info p { margin: 0; color: #64ffda; font-weight: bold; font-size: 0.9rem; }
+        .back-btn { display: inline-block; margin-bottom: 20px; color: #48cae4; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="back-btn">← Back to Dashboard</a>
+    <h1>Class of 2026</h1>
+
+    <div class="search-container">
+        <input type="text" id="studentSearch" placeholder="Search by name...">
+    </div>
+
+    <div class="grid" id="studentGrid"></div>
+
+   <script>
         // 1. THE STUDENT DATABASE (Extracted from your image)
         const students = [
             { roll: "2511002", name: "Albin Antony" },
@@ -73,3 +145,6 @@
         // Initialize the page
         displayStudents();
     </script>
+</body>
+
+</html>
