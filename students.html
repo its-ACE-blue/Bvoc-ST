@@ -1,86 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Directory - FY Bvoc(ST)</title>
-    <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #121212; color: #e0e0e0; margin: 0; padding: 20px; text-align: center; }
-        h1 { color: #64ffda; margin-bottom: 10px; }
-        
-        /* Search Bar Styling */
-        .search-container {
-            margin: 20px auto 40px auto;
-            max-width: 400px;
-        }
-        #studentSearch {
-            width: 100%;
-            padding: 12px 20px;
-            border-radius: 25px;
-            border: 1px solid #333;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            font-size: 1rem;
-            outline: none;
-            transition: 0.3s;
-        }
-        #studentSearch:focus {
-            border-color: #64ffda;
-            box-shadow: 0 0 10px rgba(100, 255, 218, 0.2);
-        }
-
-        .grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
-            gap: 25px; 
-            max-width: 1200px; 
-            margin: 0 auto; 
-        }
-        .student-card { 
-            background: rgba(255, 255, 255, 0.05); 
-            border: 1px solid #333; 
-            border-radius: 12px; 
-            overflow: hidden; 
-            transition: 0.3s; 
-        }
-        /* This class is used to hide cards that don't match the search */
-        .hidden { display: none; }
-
-        .student-card:hover { border-color: #48cae4; transform: scale(1.03); }
-        .student-card img { 
-            width: 100%; 
-            height: 250px; 
-            object-fit: cover; 
-            background: #222;
-        }
-        .info { padding: 15px; }
-        .info h3 { margin: 5px 0; font-size: 1.1rem; color: #fff; }
-        .info p { margin: 0; color: #64ffda; font-weight: bold; font-size: 0.9rem; }
-        .back-btn { display: inline-block; margin-bottom: 20px; color: #48cae4; text-decoration: none; }
-    </style>
-</head>
-<body>
-
-    <a href="index.html" class="back-btn">← Back to Dashboard</a>
-    <h1>Class of 2026</h1>
-
-    <div class="search-container">
-        <input type="text" id="studentSearch" placeholder="Search by name...">
-    </div>
-
-    <div class="grid" id="studentGrid"></div>
-
     <script>
-        // 1. YOUR DATABASE
-        const studentNames = [
-            "1", "2", "3", "4", "5", "6", 
-            "Student 7", "Student 8", "Student 9", "Student 10",
-            "Student 11", "Student 12", "Student 13", "Student 14",
-            "Student 15", "Student 16", "Student 17", "Student 18",
-            "Student 19", "Student 20", "Student 21", "Student 22",
-            "Student 23", "Prachi Kerkar", "Rehaan Gazi", "Ritika Sharma",
-            "Student 27", "Student 28", "Student 29", "Sapna Kumari",
-            "Student 31", "Thanush Hegde"
+        // 1. THE STUDENT DATABASE (Extracted from your image)
+        const students = [
+            { roll: "2511002", name: "Albin Antony" },
+            { roll: "2511003", name: "Alyona Mary Francis Monteiro" },
+            { roll: "2511004", name: "Anikit Raghunath Devadiga" },
+            { roll: "2511005", name: "Ayman Sayed" },
+            { roll: "2511006", name: "Bengel Benjamin Fernandes" },
+            { roll: "2511007", name: "Bliss Steffern Coutinho" },
+            { roll: "2511008", name: "Dhruv Vaman Rivankar" },
+            { roll: "2511009", name: "Dillon Fernandes" },
+            { roll: "2511010", name: "Fabian Alcantara Barretto" },
+            { roll: "2511011", name: "Jace Cadwy Henriques" },
+            { roll: "2511012", name: "Jaf Savio Soares" },
+            { roll: "2511013", name: "Jwellon Alex Rodrigues" },
+            { roll: "2511014", name: "Kewat Suraj Ramchandra" },
+            { roll: "2511015", name: "Khwaja Shaikh" },
+            { roll: "2511016", name: "Krrish Shivanand Pujari" },
+            { roll: "2511018", name: "Mukesh Singh" },
+            { roll: "2511019", name: "Myson Monteiro" },
+            { roll: "2511020", name: "Naizel Andria Fernandes" },
+            { roll: "2511021", name: "Neha" },
+            { roll: "2511022", name: "Palzia Colaco" },
+            { roll: "2511023", name: "Pooja Chavan" },
+            { roll: "2511024", name: "Prachi Deu Kerkar" },
+            { roll: "2511025", name: "Rehaan Amaan Gazi" },
+            { roll: "2511026", name: "Ritika Sharma" },
+            { roll: "2511027", name: "Sahil Waingankar" },
+            { roll: "2511028", name: "Samarth Sanjay Raikar" },
+            { roll: "2511030", name: "Sapna Kumari" },
+            { roll: "2511031", name: "Tanzila Mohammad Shaikh" },
+            { roll: "2511032", name: "Thanush Hegde P" },
+            { roll: "2511033", name: "Vishal Mourya" }
         ];
 
         const grid = document.getElementById('studentGrid');
@@ -88,18 +38,17 @@
         
         // 2. BUILD THE CARDS
         function displayStudents() {
-            studentNames.forEach((name, index) => {
-                const rollNumber = index + 1;
+            grid.innerHTML = ""; // Clear grid before building
+            students.forEach((student) => {
                 const card = document.createElement('div');
                 card.className = 'student-card';
-                // Add the name as a data attribute for easy searching
-                card.setAttribute('data-name', name.toLowerCase());
+                card.setAttribute('data-name', student.name.toLowerCase());
                 
                 card.innerHTML = `
-                    <img src="${rollNumber}.jpg" alt="${name}">
+                    <img src="${student.roll}.jpg" alt="${student.name}" onerror="this.src='placeholder.jpg';">
                     <div class="info">
-                        <h3>${name}</h3>
-                        <p>Roll No: ${rollNumber.toString().padStart(2, '0')}</p>
+                        <h3>${student.name}</h3>
+                        <p>Roll No: ${student.roll}</p>
                     </div>
                 `;
                 grid.appendChild(card);
@@ -124,8 +73,3 @@
         // Initialize the page
         displayStudents();
     </script>
-</body>
-
-</html>
-
-
