@@ -1,120 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subject 1 Assignments - FY Bvoc(ST)</title>
+<script>
+    const myAssignments = [
+        {
+            title: "20 pictures",
+            due: "February 20th",
+            task: "Take 20 intricate pictures, with respect to lighting, and colour.",
+            submission: "Google drive"
+        },
+        {
+            title: "Animation",
+            due: "February 20th",
+            task: "Create an animation, using any software of your choice (Flipaclip, Krita, etc.) with minimum video length of 30 seconds.",
+            submission: "Google drive"
+        },
+        {
+            title: "Video",
+            due: "February 20th",
+            task: "Create a video. Any rational topic of your choice, with post editing, with minimum video length of 3 minutes.",
+            submission: "Google drive"
+        },
+        {
+            title: "Animation Flip Book",
+            due: null,
+            task: "Create an animation using a flip-book.",
+            submission: null
+        },
+        {
+            title: "Magazine design",
+            due: null,
+            task: "Design a magazine using affinity.",
+            submission: null
+        }
+    ];
 
-    <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #121212; color: #e0e0e0; margin: 0; padding: 20px; line-height: 1.6; }
-        .header { text-align: center; margin-bottom: 40px; }
-        h1 { color: #64ffda; margin: 0; }
-        .back-btn { display: inline-block; margin-bottom: 20px; color: #48cae4; text-decoration: none; }
+    const list = document.getElementById('assignmentList');
 
-        .assignment-container { max-width: 800px; margin: 0 auto; }
+    myAssignments.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'assignment-card';
         
-        .assignment-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-left: 5px solid #64ffda;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            transition: 0.3s;
-        }
+        const dueHTML = item.due ? `<span class="due-date">Due: ${item.due}</span>` : "";
+        const submissionHTML = item.submission ? `<span class="instruction-tag">Submission Mode: ${item.submission}</span>` : "";
 
-        .assignment-card:hover { 
-            background: rgba(255, 255, 255, 0.08); 
-            transform: translateX(10px); 
-        }
+        card.innerHTML = `
+            <div class="title-row">
+                <span class="assignment-title">${item.title}</span>
+                ${dueHTML}
+            </div>
+            <p class="description">${item.task}</p>
+            ${submissionHTML}
+        `;
         
-        .title-row { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            margin-bottom: 10px; 
-        }
-
-        .assignment-title { 
-            font-size: 1.2rem; 
-            font-weight: bold; 
-            color: #fff; 
-        }
-
-        .due-date { 
-            font-size: 0.85rem; 
-            color: #ff5252; 
-            background: rgba(255, 82, 82, 0.1); 
-            padding: 4px 10px; 
-            border-radius: 15px; 
-        }
-        
-        .description { 
-            font-size: 0.95rem; 
-            opacity: 0.8; 
-            margin-bottom: 15px; 
-        }
-        
-        .instruction-tag { 
-            font-size: 0.8rem; 
-            background: #1e1e1e; 
-            padding: 5px 12px; 
-            border-radius: 4px; 
-            border: 1px solid #333; 
-            color: #48cae4; 
-        }
-    </style>
-</head>
-
-<body>
-
-    <a href="assignments.html" class="back-btn">← Back to Assignments</a>
-    
-    <div class="header">
-        <h1>Multimedia Assignments</h1>
-        <p>Follow the instructions carefully for each submission.</p>
-    </div>
-
-    <div class="assignment-container" id="assignmentList"></div>
-
-    <script>
-        const myAssignments = [
-            {
-                title: "20 pictures",
-                due: "February 20th",
-                task: "Take 20 intricate pictures, with respect to lighting, and colour."
-            },
-            {
-                title: "Animation",
-                due: "February 20th",
-                task: "Create an animation, using any software of your choice (Flipaclip, Krita, etc.) with minimum video length of 30 seconds."
-            },
-            {
-                title: "Video",
-                due: "February 20th",
-                task: "Create a video. Any rational topic of your choice, with post editing, with minimum video length of 3 minutes."
-            }
-        ];
-
-        const list = document.getElementById('assignmentList');
-
-        myAssignments.forEach(item => {
-            const card = document.createElement('div');
-            card.className = 'assignment-card';
-            
-            card.innerHTML = `
-                <div class="title-row">
-                    <span class="assignment-title">${item.title}</span>
-                    <span class="due-date">Due: ${item.due}</span>
-                </div>
-                <p class="description">${item.task}</p>
-                <span class="instruction-tag">Submission Mode: Google drive</span>
-            `;
-            
-            list.appendChild(card);
-        });
-    </script>
-
-</body>
-</html>
-
-
+        list.appendChild(card);
+    });
+</script>
