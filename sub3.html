@@ -70,30 +70,14 @@
     <a href="assignments.html" class="back-btn">← Back to Assignments</a>
     
     <div class="header">
-        <h1>Multimedia Assignments</h1>
+        <h1>Object Oriented Programming</h1>
         <p>Follow the instructions carefully for each submission.</p>
     </div>
 
     <div class="assignment-container" id="assignmentList"></div>
 
     <script>
-        const myAssignments = [
-            {
-                title: "Introduction to Web Design",
-                due: "March 15th",
-                task: "Create a basic 3-page website using HTML and CSS showing personal portfolio details."
-            },
-            {
-                title: "UI/UX Case Study",
-                due: "March 22nd",
-                task: "Analyze the user interface of any popular food delivery app and suggest 3 improvements."
-            },
-            {
-                title: "Graphic Design Basics",
-                due: "April 05th",
-                task: "Design a logo for a fictional tech company using vector tools discussed in class."
-            }
-        ];
+        const myAssignments = [];
 
         const list = document.getElementById('assignmentList');
 
@@ -101,13 +85,16 @@
             const card = document.createElement('div');
             card.className = 'assignment-card';
             
+            const dueHTML = item.due ? `<span class="due-date">Due: ${item.due}</span>` : "";
+            const submissionHTML = item.submission ? `<span class="instruction-tag">Submission Mode: ${item.submission}</span>` : "";
+
             card.innerHTML = `
                 <div class="title-row">
                     <span class="assignment-title">${item.title}</span>
-                    <span class="due-date">Due: ${item.due}</span>
+                    ${dueHTML}
                 </div>
                 <p class="description">${item.task}</p>
-                <span class="instruction-tag">Submission Mode: Online Portal</span>
+                ${submissionHTML}
             `;
             
             list.appendChild(card);
