@@ -1,3 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subject 1 Assignments - FY Bvoc(ST)</title>
+
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #121212; color: #e0e0e0; margin: 0; padding: 20px; line-height: 1.6; }
+        .header { text-align: center; margin-bottom: 40px; }
+        h1 { color: #64ffda; margin: 0; }
+        .back-btn { display: inline-block; margin-bottom: 20px; color: #48cae4; text-decoration: none; }
+
+        .assignment-container { max-width: 800px; margin: 0 auto; }
+        
+        .assignment-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 5px solid #64ffda;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+
+        .assignment-card:hover { 
+            background: rgba(255, 255, 255, 0.08); 
+            transform: translateX(10px); 
+        }
+        
+        .title-row { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 10px; 
+        }
+
+        .assignment-title { 
+            font-size: 1.2rem; 
+            font-weight: bold; 
+            color: #fff; 
+        }
+
+        .due-date { 
+            font-size: 0.85rem; 
+            color: #ff5252; 
+            background: rgba(255, 82, 82, 0.1); 
+            padding: 4px 10px; 
+            border-radius: 15px; 
+        }
+        
+        .description { 
+            font-size: 0.95rem; 
+            opacity: 0.8; 
+            margin-bottom: 15px; 
+        }
+        
+        .instruction-tag { 
+            font-size: 0.8rem; 
+            background: #1e1e1e; 
+            padding: 5px 12px; 
+            border-radius: 4px; 
+            border: 1px solid #333; 
+            color: #48cae4; 
+        }
+    </style>
+</head>
+
+<body>
+
+    <a href="assignments.html" class="back-btn">← Back to Assignments</a>
+    
+    <div class="header">
+        <h1>Multimedia Assignments</h1>
+        <p>Follow the instructions carefully for each submission.</p>
+    </div>
+
+    <div class="assignment-container" id="assignmentList"></div>
 <script>
     const myAssignments = [
         {
@@ -53,3 +130,5 @@
         list.appendChild(card);
     });
 </script>
+</body>
+</html>
